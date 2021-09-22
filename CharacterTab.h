@@ -2,13 +2,30 @@
 
 #include "Tab.h"
 
+enum class Info
+{
+	Level = 0,
+	Experience,
+	Strength,
+	Dexterity,
+	Intelligence
+};
+
 class CharacterTab :
 	public Tab
 {
 private:
 
+// Variables:
+
 	sf::RectangleShape back;
-	sf::Text infoText;
+	std::map<const Info, sf::Text> infoText;
+	std::map<const Info, std::string> infoTextString;
+	std::string stringDivider;
+
+// private: Functions:
+
+	void initText();
 
 public:
 

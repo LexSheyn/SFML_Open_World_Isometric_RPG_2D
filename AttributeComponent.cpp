@@ -13,10 +13,10 @@ AttributeComponent::AttributeComponent(int level)
 
 	//Attributes
 	this->vitality = 1;
-	this->strength = 1;
-	this->dexterity = 1;
+	this->strength = 22;
+	this->dexterity = 24;
 	this->agility = 1;
-	this->intelligence = 1;
+	this->intelligence = 26;
 
 	this->updateLevel();
 	this->updateStats(true);
