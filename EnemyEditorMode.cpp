@@ -54,7 +54,7 @@ EnemyEditorMode::~EnemyEditorMode()
 void EnemyEditorMode::updateInput(const float& dt)
 {
 	//Adding a tile to the tilemap
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && this->getKeytime())
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && this->getKeyTime())
 	{
 		if (!this->sideBar.getGlobalBounds().contains(sf::Vector2f(*this->editorStateData->mousePositionWindow)))
 		{
@@ -64,7 +64,7 @@ void EnemyEditorMode::updateInput(const float& dt)
 				this->type, this->amount, this->timeToSpawn, this->distanceMax);
 		}
 	}//Removing a tile from the tilemap
-	else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right) && this->getKeytime())
+	else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right) && this->getKeyTime())
 	{
 		if (!this->sideBar.getGlobalBounds().contains(sf::Vector2f(*this->editorStateData->mousePositionWindow)))
 		{
@@ -72,7 +72,7 @@ void EnemyEditorMode::updateInput(const float& dt)
 		}
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("TYPE_UP"))) && this->getKeytime())
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("TYPE_UP"))) && this->getKeyTime())
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift))
 		{
@@ -90,7 +90,7 @@ void EnemyEditorMode::updateInput(const float& dt)
 		}		
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("AMOUNT_UP"))) && this->getKeytime())
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("AMOUNT_UP"))) && this->getKeyTime())
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift))
 		{
@@ -102,7 +102,7 @@ void EnemyEditorMode::updateInput(const float& dt)
 		}
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("TIME_TO_SPAWN_UP"))) && this->getKeytime())
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("TIME_TO_SPAWN_UP"))) && this->getKeyTime())
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift))
 		{
@@ -114,7 +114,7 @@ void EnemyEditorMode::updateInput(const float& dt)
 		}
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("DISTANCE_MAX_UP"))) && this->getKeytime())
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("DISTANCE_MAX_UP"))) && this->getKeyTime())
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift))
 		{

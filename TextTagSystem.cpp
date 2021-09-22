@@ -23,8 +23,8 @@ void TextTagSystem::initTagTemplates()
 	sf::VideoMode vm = this->stateData->gfxSettings->resolution;
 
 	this->tagTemplates[TagTypes::Default] = new TextTag(100.f, 100.f, 0.f, -1.f, this->font, "TEST", sf::Color::White, gui::calculateCharSize(3.f, vm), 100.f, 50.f);
-	this->tagTemplates[TagTypes::Negative] = new TextTag(100.f, 100.f, 0.f, -1.f, this->font, "TEST", sf::Color(255, 100, 0), gui::calculateCharSize(3.f, vm), 100.f, 50.f);
-	this->tagTemplates[TagTypes::Positive] = new TextTag(100.f, 100.f, 0.f, -1.f, this->font, "TEST", sf::Color(100, 255, 0), gui::calculateCharSize(3.f, vm), 100.f, 50.f);
+	this->tagTemplates[TagTypes::Negative] = new TextTag(100.f, 100.f, 0.f, -1.f, this->font, "TEST", sf::Color(255, 50, 0), gui::calculateCharSize(3.f, vm), 100.f, 50.f);
+	this->tagTemplates[TagTypes::Positive] = new TextTag(100.f, 100.f, 0.f, -1.f, this->font, "TEST", sf::Color(50, 255, 0), gui::calculateCharSize(3.f, vm), 100.f, 50.f);
 	this->tagTemplates[TagTypes::Experience] = new TextTag(100.f, 100.f, 0.f, -1.f, this->font, "TEST", sf::Color::Yellow, gui::calculateCharSize(4.f, vm), 150.f, 50.f);
 }
 

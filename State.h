@@ -42,8 +42,8 @@ protected:
 	std::map<std::string, int> keybinds;
 	bool quit;
 	bool paused;
-	float keytime;
-	float keytimeMax;
+	sf::Clock keyTimer;
+	float keyTimeMax;
 	float gridSize;
 
 	sf::Texture logoTexture;
@@ -89,15 +89,10 @@ protected:
 
 // protected: Functions
 
-	// Should use '\\' instead of '/' in the file path and put this file to the .exe location,
-	// to be able to play the game without Visual Studio.
 	void initKeybinds(const std::string& file_path);
-
-	// Should use '../' before the file path to be able to play the game without Visual Studio.
 	void initFont(sf::Font& font, const std::string& file_path);
-
-	// Should use '../' before the file path to be able to play the game without Visual Studio.
 	void initTexture(const int& index, const std::string& file_path);
+	void initKeyTime();
 
 // Debug:
 
@@ -117,8 +112,12 @@ public:
 // Accessors:
 
 	const bool& getQuit() const;
-	const bool getKeytime();
-	const bool getKeytime(const float max_keytime);
+
+	// Returns TRUE is key timer reaches the maximum value in seconds, otherwise returns FALSE.
+	const bool getKeyTime();
+
+	// Returns TRUE is key timer reaches the maximum value in seconds, otherwise returns FALSE.
+	const bool getKeyTime(const float key_time_max);
 
 // Functions:
 
@@ -130,7 +129,6 @@ public:
 	void updateFpsCounter(const float& dt);
 
 	virtual void updateMousePositions(sf::View* view = nullptr);
-	virtual void updateKeytime(const float& dt);
 	virtual void updateInput(const float& dt) = 0;
 	virtual void update(const float& dt) = 0;
 

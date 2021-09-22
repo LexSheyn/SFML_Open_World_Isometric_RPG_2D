@@ -36,7 +36,7 @@ void CharacterTab::update(const float& dt)
 {
 	if (this->opened)
 	{
-	//	this->infoText.setString("TEST :" + std::to_string(dt));
+		this->infoText.setString("TEST :" + std::to_string(dt));
 	}
 }
 

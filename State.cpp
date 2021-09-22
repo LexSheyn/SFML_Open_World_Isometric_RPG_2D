@@ -59,6 +59,12 @@ void State::initTexture(const int& index, const std::string& file_path)
 	}
 }
 
+void State::initKeyTime()
+{
+	this->keyTimeMax = 0.3f; // Seconds
+	this->keyTimer.restart();
+}
+
 //Debug function.
 //Initializes mouse position text.
 void State::initMousePositionText()
@@ -94,14 +100,15 @@ State::State(StateData* state_data)
 	this->states = state_data->states;
 	this->quit = false;
 	this->paused = false;
-	this->keytime = 0.f;
-	this->keytimeMax = 30.f;
 	this->gridSize = state_data->gridSize;
 
 	this->initFont(this->systemFont, "Fonts/PixellettersFull.ttf");
 
 	this->initMousePositionText();
 	this->initFpsCounter();
+
+	// Key timer	
+	this->initKeyTime();
 }
 
 State::~State()
@@ -116,22 +123,24 @@ const bool& State::getQuit() const
 	return this->quit;
 }
 
-const bool State::getKeytime()
+const bool State::getKeyTime()
 {
-	if (this->keytime >= this->keytimeMax)
+	if (this->keyTimer.getElapsedTime().asSeconds() >= this->keyTimeMax)
 	{
-		this->keytime = 0.f;
+		this->keyTimer.restart();
+
 		return true;
 	}
 
 	return false;
 }
 
-const bool State::getKeytime(const float max_keytime)
+const bool State::getKeyTime(const float key_time_max)
 {
-	if (this->keytime >= max_keytime)
+	if (this->keyTimer.getElapsedTime().asSeconds() >= key_time_max)
 	{
-		this->keytime = 0.f;
+		this->keyTimer.restart();
+
 		return true;
 	}
 
@@ -195,14 +204,6 @@ void State::updateMousePositions(sf::View* view)
 	);
 
 	this->window->setView(this->window->getDefaultView());
-}
-
-void State::updateKeytime(const float& dt)
-{
-	if (this->keytime < this->keytimeMax)
-	{
-		this->keytime += 100.f * dt;
-	}
 }
 
 //Debug function.

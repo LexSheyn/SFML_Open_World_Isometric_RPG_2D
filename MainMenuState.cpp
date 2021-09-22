@@ -159,27 +159,27 @@ void MainMenuState::updateButtons(const float& dt)
 	}
 
 	//New game
-	if (this->buttons["GAME_STATE"]->isPressed() && this->getKeytime())
+	if (this->buttons["GAME_STATE"]->isPressed() && this->getKeyTime())
 	{
 		//Game
 		this->states->push(new GameState(this->stateData));
 	}
 
 	//Settings
-	if (this->buttons["SETTINGS_STATE"]->isPressed() && this->getKeytime())
+	if (this->buttons["SETTINGS_STATE"]->isPressed() && this->getKeyTime())
 	{
 		this->states->push(new SettingsState(this->stateData));
 	}
 
 	//Editor
-	if (this->buttons["EDITOR_STATE"]->isPressed() && this->getKeytime())
+	if (this->buttons["EDITOR_STATE"]->isPressed() && this->getKeyTime())
 	{
 		//Editor
 		this->states->push(new EditorState(this->stateData));
 	}
 
 	//Quit the game
-	if (this->buttons["EXIT_STATE"]->isPressed() && this->getKeytime())
+	if (this->buttons["EXIT_STATE"]->isPressed() && this->getKeyTime())
 	{
 		this->endState();
 	}
@@ -188,7 +188,6 @@ void MainMenuState::updateButtons(const float& dt)
 void MainMenuState::update(const float& dt)
 {
 	this->updateMousePositions();
-	this->updateKeytime(dt);
 	this->updateInput(dt);
 	this->updateButtons(dt);
 

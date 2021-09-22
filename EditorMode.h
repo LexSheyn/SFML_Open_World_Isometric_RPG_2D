@@ -25,8 +25,8 @@ public:
 
     std::map<std::string, int>* keybinds;
 
-    float* keytime;
-    float* keytimeMax;
+    sf::Clock* keyTimer;
+    float* keyTimeMax;
 
     sf::Vector2i* mousePositionScreen;
     sf::Vector2i* mousePositionWindow;
@@ -53,8 +53,8 @@ public:
 
 //Accessors:
 
-    const bool getKeytime();
-    const bool getKeytime(const float max_keytime);
+    const bool getKeyTime();
+    const bool getKeyTime(const float max_keytime);
 
 //Functions:
 

@@ -114,6 +114,11 @@ const bool PlayerGui::isTabsOpen() const
 
 //FUnctions:
 
+void PlayerGui::toggleCharacterTab()
+{
+	this->playerTabs->toggleCharacterTab();
+}
+
 void PlayerGui::updateHpBar(const float& dt)
 {
 	this->hpBar->update(this->player->getAttributeComponent()->hp, this->player->getAttributeComponent()->hpMax, dt, true);

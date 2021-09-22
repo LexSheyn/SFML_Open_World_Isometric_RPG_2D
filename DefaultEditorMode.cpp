@@ -78,7 +78,7 @@ DefaultEditorMode::~DefaultEditorMode()
 void DefaultEditorMode::updateInput(const float& dt)
 {
 	//Adding a tile to the tilemap
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && this->getKeytime())
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && this->getKeyTime())
 	{
 		if (!this->sideBar.getGlobalBounds().contains(sf::Vector2f(*this->editorStateData->mousePositionWindow)))
 		{
@@ -102,7 +102,7 @@ void DefaultEditorMode::updateInput(const float& dt)
 			}
 		}
 	}//Removing a tile from the tilemap
-	else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right) && this->getKeytime())
+	else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right) && this->getKeyTime())
 	{
 		if (!this->sideBar.getGlobalBounds().contains(sf::Vector2f(*this->editorStateData->mousePositionWindow)))
 		{
@@ -117,7 +117,7 @@ void DefaultEditorMode::updateInput(const float& dt)
 		}
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("COLLISION_TOGGLE"))) && this->getKeytime())
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("COLLISION_TOGGLE"))) && this->getKeyTime())
 	{
 		if (this->collision)
 		{
@@ -128,14 +128,14 @@ void DefaultEditorMode::updateInput(const float& dt)
 			this->collision = true;
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("TYPE_INCREASE"))) && this->getKeytime())
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("TYPE_INCREASE"))) && this->getKeyTime())
 	{
 		if (this->type < static_cast<int>(TileTypes::Doodad))
 		{
 			++this->type;
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("TYPE_DECREASE"))) && this->getKeytime())
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("TYPE_DECREASE"))) && this->getKeyTime())
 	{
 		if (this->type > static_cast<int>(TileTypes::Default))
 		{
@@ -144,7 +144,7 @@ void DefaultEditorMode::updateInput(const float& dt)
 	}
 
 	//Setting lock ON/OFF
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("TILE_LOCK_TOGGLE"))) && this->getKeytime())
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->editorStateData->keybinds->at("TILE_LOCK_TOGGLE"))) && this->getKeyTime())
 	{
 		if (this->tileAddLock)
 		{

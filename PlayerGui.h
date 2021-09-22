@@ -49,6 +49,8 @@ public:
 
 // Fucntions:
 
+	void toggleCharacterTab();
+
 	void updateHpBar(const float& dt);
 	void updateLevelBar(const float& dt);
 	void updateExpBar(const float& dt);

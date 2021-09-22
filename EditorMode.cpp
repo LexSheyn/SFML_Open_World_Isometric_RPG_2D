@@ -16,22 +16,24 @@ EditorMode::~EditorMode()
 
 //Accessors:
 
-const bool EditorMode::getKeytime()
+const bool EditorMode::getKeyTime()
 {
-	if (*this->editorStateData->keytime >= *this->editorStateData->keytimeMax)
+	if (this->editorStateData->keyTimer->getElapsedTime().asSeconds() >= *this->editorStateData->keyTimeMax)
 	{
-		*this->editorStateData->keytime = 0.f;
+		this->editorStateData->keyTimer->restart();
+
 		return true;
 	}
 
 	return false;
 }
 
-const bool EditorMode::getKeytime(const float max_keytime)
+const bool EditorMode::getKeyTime(const float key_time_max)
 {
-	if (*this->editorStateData->keytime >= max_keytime)
+	if (this->editorStateData->keyTimer->getElapsedTime().asSeconds() >= key_time_max)
 	{
-		*this->editorStateData->keytime = 0.f;
+		this->editorStateData->keyTimer->restart();
+
 		return true;
 	}
 

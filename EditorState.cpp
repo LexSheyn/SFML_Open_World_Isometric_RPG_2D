@@ -16,8 +16,8 @@ void EditorState::initEditorStateData()
 
 	this->editorStateData.keybinds = &this->keybinds;
 	
-	this->editorStateData.keytime = &this->keytime;
-	this->editorStateData.keytimeMax = &this->keytimeMax;
+	this->editorStateData.keyTimer = &this->keyTimer;
+	this->editorStateData.keyTimeMax = &this->keyTimeMax;
 
 	this->editorStateData.mousePositionScreen = &this->mousePositionScreen;
 	this->editorStateData.mousePositionWindow = &this->mousePositionWindow;
@@ -127,7 +127,7 @@ EditorState::~EditorState()
 
 void EditorState::updateInput(const float& dt)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))) && this->getKeytime())
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))) && this->getKeyTime())
 	{
 		if (!this->paused)
 		{
@@ -200,19 +200,19 @@ void EditorState::updateGui(const float& dt)
 
 void EditorState::updatePauseMenuButtons()
 {
-	if (this->pauseMenu->isButtonPressed(gui::ButtonName::Resume) && this->getKeytime())
+	if (this->pauseMenu->isButtonPressed(gui::ButtonName::Resume) && this->getKeyTime())
 	{
 		this->paused = false;
 	}
-	else if (this->pauseMenu->isButtonPressed(gui::ButtonName::Save) && this->getKeytime())
+	else if (this->pauseMenu->isButtonPressed(gui::ButtonName::Save) && this->getKeyTime())
 	{
 		this->tileMap->saveToFile("Maps/test.tilemap");
 	}
-	else if (this->pauseMenu->isButtonPressed(gui::ButtonName::Load) && this->getKeytime())
+	else if (this->pauseMenu->isButtonPressed(gui::ButtonName::Load) && this->getKeyTime())
 	{
 		this->tileMap->loadFromFile("Maps/test.tilemap");
 	}
-	else if (this->pauseMenu->isButtonPressed(gui::ButtonName::Quit) && this->getKeytime())
+	else if (this->pauseMenu->isButtonPressed(gui::ButtonName::Quit) && this->getKeyTime())
 	{
 		this->endState();
 	}
@@ -226,7 +226,6 @@ void EditorState::updateModes(const float& dt)
 void EditorState::update(const float& dt)
 {
 	this->updateMousePositions(&this->view);
-	this->updateKeytime(dt);
 	this->updateInput(dt);	
 
 	if (!this->paused) //Unpaused update

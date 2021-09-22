@@ -38,7 +38,7 @@ public:
 
 // Functions:
 
-	void updateInput();
+	void toggleCharacterTab();
 
 	void update(const float& dt);
 	void render(sf::RenderTarget& target);

@@ -224,7 +224,7 @@ void GameState::updateView(const float& dt)
 
 void GameState::updateInput(const float& dt)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))) && this->getKeytime())
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))) && this->getKeyTime())
 	{
 		//SOUND ENGINE TEST
 		this->soundEngine.playSound(sfx::Sound::ButtonPress);
@@ -242,49 +242,52 @@ void GameState::updateInput(const float& dt)
 
 void GameState::updatePlayerInput(const float& dt)
 {
-	//Updating player input
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT")))) //Left
+	if (!this->playerGui->isTabsOpen())
 	{
-		this->player->move(-1.f, 0.f, dt);
-	}	
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_RIGHT")))) //Right
-	{
-		this->player->move(1.f, 0.f, dt);
-	}
+		//Updating player input
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT")))) //Left
+		{
+			this->player->move(-1.f, 0.f, dt);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_RIGHT")))) //Right
+		{
+			this->player->move(1.f, 0.f, dt);
+		}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP")))) //Up
-	{
-		this->player->move(0.f, -1.f, dt);
-	}	
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN")))) //Down
-	{
-		this->player->move(0.f, 1.f, dt);
-	}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP")))) //Up
+		{
+			this->player->move(0.f, -1.f, dt);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN")))) //Down
+		{
+			this->player->move(0.f, 1.f, dt);
+		}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::O))
-	{
-		this->player->loseHp(1);
-		//SOUND ENGINE TEST
-		this->soundEngine.increaseSfxVolume(-0.07f);
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
-	{
-		this->player->gainHp(1);
-		//SOUND ENGINE TEST
-		this->soundEngine.increaseSfxVolume(0.07f);
-	}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::O))
+		{
+			this->player->loseHp(1);
+			//SOUND ENGINE TEST
+			this->soundEngine.increaseSfxVolume(-0.07f);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+		{
+			this->player->gainHp(1);
+			//SOUND ENGINE TEST
+			this->soundEngine.increaseSfxVolume(0.07f);
+		}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::U))
-	{
-		this->player->loseExp(1);
-		//SOUND ENGINE TEST
-		this->soundEngine.increaseMusicVolume(-0.07f);
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::I))
-	{
-		this->player->gainExp(1);
-		//SOUND ENGINE TEST
-		this->soundEngine.increaseMusicVolume(0.07f);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::U))
+		{
+			this->player->loseExp(1);
+			//SOUND ENGINE TEST
+			this->soundEngine.increaseMusicVolume(-0.07f);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::I))
+		{
+			this->player->gainExp(1);
+			//SOUND ENGINE TEST
+			this->soundEngine.increaseMusicVolume(0.07f);
+		}
 	}
 
 //	//TEST
@@ -310,6 +313,11 @@ void GameState::updatePlayerInput(const float& dt)
 void GameState::updatePlayerGui(const float& dt)
 {
 	this->playerGui->update(dt);
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("TOGGLE_PLAYER_TAB_CHARACTER"))) && this->getKeyTime())
+	{
+		this->playerGui->toggleCharacterTab();
+	}
 }
 
 void GameState::updatePauseMenuButtons()
@@ -338,7 +346,7 @@ void GameState::uodateTileMap(const float& dt)
 
 void GameState::updatePlayer(const float& dt)
 {
-
+	this->player->update(dt, this->mousePositionView);
 }
 
 void GameState::updateEnemies(const float& dt)
@@ -416,7 +424,6 @@ void GameState::updateCombat(Enemy* enemy, const float& dt)
 void GameState::update(const float& dt)
 {	
 	this->updateMousePositions(&this->view);
-	this->updateKeytime(dt);
 	this->updateInput(dt);
 
 	if (!this->paused) //Unpaused update
@@ -427,9 +434,8 @@ void GameState::update(const float& dt)
 	
 		this->uodateTileMap(dt);
 
-		this->player->update(dt, this->mousePositionView);
-	
-		this->playerGui->update(dt);
+		this->updatePlayer(dt);
+		this->updatePlayerGui(dt);
 
 		//Updating all enemies
 		this->updateEnemies(dt);

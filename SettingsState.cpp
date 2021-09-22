@@ -178,13 +178,13 @@ void SettingsState::updateGui(const float& dt)
 //Buttons functionality:
 
 	//Back to the main menu
-	if (this->buttons["EXIT_STATE"]->isPressed() && this->getKeytime())
+	if (this->buttons["EXIT_STATE"]->isPressed() && this->getKeyTime())
 	{
 		this->endState();
 	}
 
 	//Apply selected settings
-	if (this->buttons["APPLY"]->isPressed() && this->getKeytime())
+	if (this->buttons["APPLY"]->isPressed() && this->getKeyTime())
 	{
 		//TEST, REMOVE LATER
 		this->stateData->gfxSettings->resolution = this->modes[this->dropDownLists["RESOLUTION"]->getActiveElementId()];
@@ -218,7 +218,6 @@ void SettingsState::updateGui(const float& dt)
 void SettingsState::update(const float& dt)
 {
 	this->updateMousePositions();
-	this->updateKeytime(dt);
 	this->updateInput(dt);
 	this->updateGui(dt);
 

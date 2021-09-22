@@ -54,33 +54,20 @@ const bool PlayerTabPanel::isOpen() const
 
 // Functions:
 
-void PlayerTabPanel::updateInput()
+void PlayerTabPanel::toggleCharacterTab()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+	if (this->characterTab.isOpen())
 	{
-		if (this->buttonPressed == false)
-		{
-			this->buttonPressed = true;
-
-			if (this->characterTab.isOpen())
-			{
-				this->characterTab.close();
-			}
-			else
-			{
-				this->characterTab.open();
-			}
-		}		
+		this->characterTab.close();
 	}
 	else
 	{
-		this->buttonPressed = false;
+		this->characterTab.open();
 	}
 }
 
 void PlayerTabPanel::update(const float& dt)
 {
-	this->updateInput();
 	this->characterTab.update(dt);
 }
 
